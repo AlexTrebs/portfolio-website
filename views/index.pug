@@ -1,0 +1,21 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+
+    title Portfolio Microfrontends
+    script(src="https://unpkg.com/htmx.org@1.9.2")
+    link(rel='stylesheet', href='/styles/car_loading.css')
+    link(rel='stylesheet', href='/styles/main.css')
+    link(rel='stylesheet', href='/styles/sidebar.css')
+  body
+    div.sidebar
+      div.sidebar-content(hx-get='/load/projects-list', hx-trigger='load', hx-target='.sidebar-content', hx-swap='innerHTML')
+        div(class="spinner")
+          span
+          span
+          span
+    div.app-container#app-container
+      h2 Welcome
+      p Select a project from the sidebar to display its details here.

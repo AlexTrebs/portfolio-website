@@ -1,0 +1,44 @@
+{
+  "name": "portfoliowebsite",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/AlexTrebs/PortfolioWebsite#readme",
+  "bugs": {
+    "url": "https://github.com/AlexTrebs/PortfolioWebsite/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexTrebs/PortfolioWebsite.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "NODE_ENV=production node index.js",
+    "dev": "nodemon index.js"
+  },
+  "plugins": [
+    "import"
+  ],
+  "rules": {
+    "import/no-unresolved": 2,
+    "import/no-commonjs": 2,
+    "import/extensions": [
+      2,
+      "ignorePackages"
+    ]
+  },
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "express": "5.1.0",
+    "firebase-admin": "13.3.0",
+    "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
