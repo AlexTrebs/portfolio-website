@@ -1,36 +1,41 @@
-import axios from "axios";
-import * as cheerio from "cheerio";
 import * as pug from 'pug';
+import * as fs from 'node:fs';
+import * as marked from 'marked';
 
 // Sample projects data (simulate your NoSQL DB documents)
 const projects = [
   {
     _id: "tictactoe",
     title: "TicTacToe^2",
-    image: "/assets/app1.jpg",
+    icon: "/assets/app1.jpg",
     remote: "http://localhost:3001",  // Not used in this example
     enable: true,
-    description: "A simple game from childhood I developed so that I didn\'t have to carry around paper anymore!",
-    demo: "/demos/app1.mp4",
-    gif: "/assets/app1_demo.gif"
+    markdown: "https://raw.githubusercontent.com/AlexTrebs/shortcut/refs/heads/main/README.md"
   },
   {
     _id: "project2",
     title: "Simple App",
-    image: "/assets/app2.jpg",
+    icon: "/assets/app2.jpg",
     remote: "/apps/app2.html",
     enable: true,
-    description: "A simple app for daily tasks."
   },
   {
     _id: "project3",
     title: "Demo App",
-    image: "/assets/app3.jpg",
+    icon: "/assets/app3.jpg",
     remote: "/apps/app3.html",
     enable: true,
-    demo: "/demos/app3.mp4"
   }
 ];
+
+const stringIsAValidUrl = (s) => {
+  try {
+    new URL(s);
+    return true;
+  } catch (err) {
+    return false;
+  }
+};
 
 export const getProject = async (req, res) => {
   const project = projects.find(p => p._id === req.params.id);
@@ -38,8 +43,17 @@ export const getProject = async (req, res) => {
     return res.status(404).send("Project not found");
   }
 
-  let template = pug.compileFile('views/includes/project_container.pug');
+  if(stringIsAValidUrl(project.markdown)) {
+    try {
+      const response = await fetch(project.markdown);
+      project.markdown = marked.parse(await response.text());
+      console.log(project.markdown);
+    } catch (error) {
+      console.error("Markdown not found at ${project.markdown}");
+    }
+  }
 
+  let template = pug.compileFile('views/includes/project_container.pug');
   let html = template({ project: project })
 
   res.send(html);
