@@ -1,7 +1,7 @@
 import express from 'express';
-import { getProject } from './src/components/projectContainer.js';
-import { getProjectList } from './src/components/projectList.js';
-import './src/routes/home.js';
+import { getProject } from './components/projectContainer.js';
+import { getProjectList } from './components/projectList.js';
+import { getHome } from './routes/home.js';
 import bodyParser from 'body-parser';
 import compression from 'compression';
 
@@ -22,9 +22,7 @@ app.get("/load/projects-list", getProjectList);
 app.get("/load/:id", getProject);
 
 // Serve the main static HTML page
-app.get('/', (_, res) => {
-  res.render('index');
-});
+app.get('/', getHome);
 
 // Start the server
 const port = process.env.PORT || 3000;

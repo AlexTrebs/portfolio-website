@@ -7,17 +7,67 @@ html(lang='en')
     title Portfolio Microfrontends
     
     script(src="https://unpkg.com/htmx.org@1.9.2")
-
-    link(rel='stylesheet', href='/styles/car_loading.css')
-    link(rel='stylesheet', href='/styles/main.css')
-    link(rel='stylesheet', href='/styles/sidebar.css')
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js")
+    script(src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@latest/bundled/lenis.min.js")
+    script.
+      const lenis = new Lenis();
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+      requestAnimationFrame(raf);
+    link(rel="stylesheet", href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap")
+    link(rel='stylesheet', href='/css/car_loading.css')
+    link(rel='stylesheet', href='/css/main.css')
+    link(rel='stylesheet', href='/css/tailwind.css')
+    link(rel='stylesheet', href='/css/sidebar.css')
+    link(rel="stylesheet", href="/css/variables.css")
   body
-    div.sidebar
-      div.sidebar-content(hx-get='/load/projects-list', hx-trigger='load', hx-target='.sidebar-content', hx-swap='innerHTML')
+    div.sidebar.py-1
+      link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css")
+      div.pb-1.dotted-underline-white
+        a(href="/" class="sidebar-item")
+          i(class="fas fa-home fa-2xl")
+          span.whitespace-nowrap(class="text") Home
+      div.sidebar-content.pt-1(hx-get='/load/projects-list', hx-trigger='load', hx-target='.sidebar-content', hx-swap='innerHTML')
         div(class="spinner")
           span
           span
           span
+      div.mt-auto
+        a(href="/contact" class="sidebar-item")
+          i(class="fas fa-comment fa-2xl")
+          span.whitespace-nowrap(class="text") Contact
     div.app-container#app-container
-      h2 Welcome
-      p Select a project from the sidebar to display its details here.
+      block content
+  script.
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.utils.toArray('.animate-on-scroll').forEach(el => {
+      gsap.fromTo(el,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 101%",
+            toggleActions: "play none none none"
+          }
+        }
+      );
+    });
+
+    gsap.from(".letter-wave span, .letter-wave path", {
+      y: 40,
+      opacity: 0,
+      ease: "elastic.out(1, 0.6)",
+      duration: 1.2,
+      stagger: {
+        each: 0.06,
+        from: "start" // or "center", "edges"
+      }
+    });
