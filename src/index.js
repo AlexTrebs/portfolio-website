@@ -1,5 +1,5 @@
 import express from 'express';
-import { getProject } from './components/projectContainer.js';
+import { getProject } from './routes/project.js';
 import { getProjectList } from './components/projectList.js';
 import { getHome } from './routes/home.js';
 import bodyParser from 'body-parser';
