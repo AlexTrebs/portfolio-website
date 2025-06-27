@@ -1,15 +1,14 @@
 import * as pug from 'pug';
-import * as fs from 'node:fs';
 
 // Sample projects data (simulate your NoSQL DB documents)
 const projects = [
   {
     _id: "tictactoe",
     title: "TicTacToe^2",
-    icon: "/assets/app1.jpg",
+    icon: "https://raw.githubusercontent.com/AlexTrebs/shortcut/refs/heads/main/docs/images/small_icon.png",
     remote: "http://localhost:3001",  // Not used in this example
     enable: true,
-    markdown: fs.readFileSync('./shortcut.md').toString()
+    markdown: "https://raw.githubusercontent.com/AlexTrebs/shortcut/refs/heads/main/README.md"
   },
   {
     _id: "project2",

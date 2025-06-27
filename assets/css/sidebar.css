@@ -7,18 +7,20 @@ body {
 /* Sidebar Default (Collapsed) */
 .sidebar {
   width: 60px;
-  height: 100vh;
+  height: 100%;
   background: #2c3e50;
   position: fixed;
   transition: width 0.3s ease-in-out;
   overflow: hidden;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Sidebar Items */
 .sidebar-content {
   display: flex;
   flex-direction: column;
-  padding-top: 20px;
 }
 
 .sidebar-item {
@@ -32,13 +34,25 @@ body {
 }
 
 .sidebar-item:hover {
-  background-color: #444; /* Highlight when hovered */
+  background-color: rgb(204, 98, 60); /* Highlight when hovered */
 }
 
 /* Image Default */
+.sidebar-item img, .sidebar-item i {
+  text-align: center;
+  align-content: center;
+  animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 1s;
+}
 .sidebar-item img {
   width: 40px;
   height: 40px;
+}
+.sidebar-item i {
+  width: 35px;
+  height: 35px;
 }
 
 /* Hide text when collapsed */
@@ -57,6 +71,7 @@ body {
 /* Show text when expanded */
 .sidebar:hover .text {
   display: inline-block;
+  font-size: large;
 }
 
 /* Main Content */
@@ -98,13 +113,16 @@ body {
   animation: fade 1s ease-in-out 0.2s infinite;
 }
 
-@keyframes fade {
-  0%, 100% {
-    opacity: 1;
-  }
-
-  60% {
-    opacity: 0;
-  }
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
 }
- 
+
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
