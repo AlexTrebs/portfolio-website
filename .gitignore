@@ -4,9 +4,5 @@
 
 *node_modules
 
-assets/css/tailwind.css
-
-
 .env
 
-build/*
