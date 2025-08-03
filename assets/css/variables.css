@@ -4,10 +4,14 @@
   --gap-fluid: clamp(1rem,0.8571rem + 1.0143vi,3.5rem);
   --space-xl: clamp(3.375rem,3.2679rem + 0.5357vi,3.75rem);
   --space-2xl: clamp(4.5rem,4.3571rem + 0.7143vi,5rem);
-  --space-lg: clamp(10.25rem,2.5786rem + 1.3571vi,4rem);
-  --text-h1: clamp(3.5rem,2.3571rem + 5.5143vi,10.5rem);
+  --space-lg: clamp(0rem, -7rem + 15.3571vi, 15rem);
+  --text-h1: clamp(1.5rem,2.3571rem + 1.5143vi,10.5rem);
   --text-heading-display: clamp(1rem,1.203rem + 5.0714vw,5.25rem);
+  --text-heading-2: clamp(1rem,0rem + 2.3vi,3.5rem);
+  --text-heading-3: clamp(1rem,0rem + 1.5vi,3rem);
+  --text-heading-4: clamp(0.5rem,0rem + 1.25vi,2.5rem);
   --space-2xs: clamp(0.5625rem,0.5446rem + 0.0893vi,0.625rem);
   --text-base-small: 1rem;
-  --text-base: clamp(1rem,0.9286rem + 0.3571vi,1.25rem);
+  --text-base: clamp(0.5rem,0rem + 1vi,1.5rem);
+  --timeline-gap: var(--text-heading-2) * 2 + var(--text-heading-3) * 2;
 }

@@ -1,0 +1,20 @@
+section.code-text.relative.min-h-screen.w-full.overflow-x-clip.z-10#Experience(style="margin-top: 10vh; background: #36506b; color: white")
+  include waves
+  div.relative.z-20.m-h-screen.w-full.overflow-x-clip
+    section.px-4.m-h-screen.section-padding(class="text-[var(--color-text-bg)]" style="background: #36506b; color: white")
+      div.sticky.flex.w-full.flex-col.top-0.items-center.justify-center(class="gap-y-[var(--space-lg)] md:gap-y-[var(--space-2xl)]" style="height: 18vh")
+        h1.section-heading.col-span-6.text-accent-400.font-bold.animate-on-scroll(class="text-[length:var(--text-h1)] max-w-[18ch]")
+          div.overflow-hidden
+            span.letter-wave(style='opacity: 1;')
+              span.inline-block(style='opacity: 1; transform: none;') E
+              span.inline-block(style='opacity: 1; transform: none;') x
+              span.inline-block(style='opacity: 1; transform: none;') p
+              span.inline-block(style='opacity: 1; transform: none;') e
+              span.inline-block(style='opacity: 1; transform: none;') r
+              span.inline-block(style='opacity: 1; transform: none;') i
+              span.inline-block(style='opacity: 1; transform: none;') e
+              span.inline-block(style='opacity: 1; transform: none;') n
+              span.inline-block(style='opacity: 1; transform: none;') c
+              span.inline-block(style='opacity: 1; transform: none;') e
+      div.animate-on-scroll.timeline-content(hx-get='/load/experience-list', hx-trigger='load', hx-target='.timeline-content', hx-swap='innerHTML')
+  

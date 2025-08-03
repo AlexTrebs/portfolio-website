@@ -1,0 +1,36 @@
+div.waves
+  each wave, index in ['wave1', 'wave2', 'wave3', 'wave4']
+    div.layer(class=`layer${index + 1}`)
+      svg(xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4000 70" width="1000%" height="10%" preserveAspectRatio="none")
+        defs
+          pattern(id=`mirrored-wave-${index}` patternUnits="userSpaceOnUse" width="400" height="100")
+            image(
+              href=`/images/${wave}.svg`
+              x="0"
+              y="0"
+              width="200"
+              height=`calc(100 - 10 * ${index})`
+            )
+            image(
+              href=`/images/${wave}.svg`
+              width="200"
+              height=`calc(100 - 10 * ${index})`
+              transform="translate(400,0) scale(-1,1)"
+            )
+        rect(x="0" y="0" width="500%" height="100" fill=`url(#mirrored-wave-${index})`)
+script.
+  gsap.registerPlugin(ScrollTrigger);
+
+  ['.layer1', '.layer2', '.layer3', '.layer4'].forEach((selector, i) => {
+    const speed = 0.2 + i * 0.15;
+    gsap.to(selector, {
+      x: () => `-${window.innerWidth * speed}px`,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.waves',
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: true
+      }
+    });
+  });

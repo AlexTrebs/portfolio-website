@@ -4,8 +4,9 @@ html(lang='en')
     meta(charset='utf-8')
     meta(name='viewport', content='width=device-width, initial-scale=1')
 
-    title Portfolio Microfrontends
-    
+    title Alex Trebilcock 
+    script(src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.4.6/dist/dotlottie-wc.js" type="module")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js")
     script(src="https://unpkg.com/htmx.org@1.9.2")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js")
@@ -19,17 +20,21 @@ html(lang='en')
       requestAnimationFrame(raf);
     link(rel="stylesheet", href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap")
     link(rel='stylesheet', href='/css/car_loading.css')
+    link(rel='stylesheet', href='/css/contact.css')
+    link(rel="stylesheet", href="/css/home.css")
     link(rel='stylesheet', href='/css/main.css')
+    link(rel='stylesheet', href='/css/timeline.css')
     link(rel='stylesheet', href='/css/tailwind.css')
     link(rel='stylesheet', href='/css/sidebar.css')
     link(rel="stylesheet", href="/css/variables.css")
+    link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css/github-markdown.min.css")
   body
     div.sidebar.py-1
       link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css")
       div.pb-1.dotted-underline-white
         a(href="/" class="sidebar-item")
           i(class="fas fa-home fa-2xl")
-          span.whitespace-nowrap(class="text") Home
+          span.whitespace-nowrap.sidebar-text Home
       div.sidebar-content.pt-1(hx-get='/load/projects-list', hx-trigger='load', hx-target='.sidebar-content', hx-swap='innerHTML')
         div(class="spinner")
           span
@@ -38,24 +43,63 @@ html(lang='en')
       div.mt-auto
         a(href="/contact" class="sidebar-item")
           i(class="fas fa-comment fa-2xl")
-          span.whitespace-nowrap(class="text") Contact
+          span.whitespace-nowrap.sidebar-text Contact
     div.app-container#app-container
       block content
   script.
     gsap.registerPlugin(ScrollTrigger);
+    ScrollTrigger.clearScrollMemory("manual");
+    window.scrollTo(0, 0);
 
-    gsap.utils.toArray('.animate-on-scroll').forEach(el => {
+    gsap.utils.toArray('.animate-on-scroll-enter').forEach(el => {
       gsap.fromTo(el,
-        { opacity: 0, y: 30 },
+        { opacity: 0, y: 30, scale: 1.1 },
         {
           opacity: 1,
           y: 0,
+          scale: 1,
           duration: 1,
           ease: "power2.out",
           scrollTrigger: {
             trigger: el,
             start: "top 101%",
-            toggleActions: "play none none none"
+            end: "bottom top",
+            toggleActions: "play none none reverse",
+            onEnterBack: () => {
+              gsap.to(el, {
+                opacity: 1,
+                scale: 1,
+                duration: 0.6,
+                ease: "power2.out"
+              });
+            }
+          }
+        }
+      );
+    });
+
+    gsap.utils.toArray('.animate-on-scroll-exit').forEach(el => {
+      gsap.fromTo(el,
+        { opacity: 0, y: 30, scale: 1.1 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 101%",
+            end: "top top",
+            toggleActions: "play none none reverse",
+            onLeave: () => {
+              gsap.to(el, {
+                opacity: 0,
+                scale: 0.9,
+                duration: 0.6,
+                ease: "power2.in"
+              });
+            },
           }
         }
       );

@@ -1,0 +1,83 @@
+.waves {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+
+.layer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 400%;
+  height: auto;  
+  display: flex;
+  align-items: flex-end;
+  pointer-events: none;
+}
+
+.layer svg {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
+.layer1 { z-index: 3; opacity: 1; }
+.layer2 { z-index: 1; opacity: 0.8; transform: translateX(-150px); }
+.layer3 { z-index: 4; opacity: 0.6; transform: translateX(-300px); }
+.layer4 { z-index: 2; opacity: 0.4; transform: translateX(-450px); }
+
+.timeline-content {
+  gap: 10px;
+  display: flex;
+  flex: 0 0 auto;
+  flex-flow: column;
+  overflow: visible;
+  position: relative;
+  width: 100%;
+}
+
+.timeline-item {
+  gap: 10px;
+  display: flex;
+  overflow: visible;
+  height: min-content;
+  position: sticky;
+  width: 100%;
+}
+
+.sticky-wrapper {
+  position: relative;
+  height: 100%;
+}
+
+.sticky-date {
+  position: sticky;
+  bottom: 0;
+  padding-bottom: 1em;
+  z-index: -1;
+}
+
+.timeline-date {
+  background: #36506b;
+  width: 6em;
+  text-align: center;
+}
+
+.tech-stack {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.25em;
+}
+
+.tech-item, .divider {
+  white-space: nowrap;
+  color: inherit;
+}
+
+.connector-line {
+  position:absolute; 
+  left:3em;
+  top:0; 
+  z-index:-2; 
+  pointer-events:none;
+}

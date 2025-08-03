@@ -95,3 +95,34 @@ html.lenis {
     transform: translateY(0);
   }
 }
+
+:root {
+  --scroll: 0;
+}
+
+.markdown-body {
+  background-color: transparent !important; /* or your preferred color */
+  color: inherit !important; /* keeps your site's text color */
+  box-sizing: border-box;
+  min-width: 150px;
+  width: inherit;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 45px;
+}
+
+@media (max-width: 767px) {
+  .markdown-body {
+    padding: 15px;
+  }
+}
+
+.markdown-body h1 {
+  justify-items: center !important;
+  display: grid; 
+  gap: 10px;
+}
+
+.markdown-body h1 p {
+  display: flex;
+}
