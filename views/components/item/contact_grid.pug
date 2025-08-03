@@ -1,0 +1,35 @@
+for contact in contacts
+  a.contact-item.place-items-center.text-center.animate-on-scroll-enter(href=`${contact.url}`)
+    div.icon-wrapper
+      canvas.lottie-canvas(
+        data-src=contact.lottie
+      )
+    span.whitespace-nowrap #{contact.name}
+    //- In your layout.pug (e.g. head or bottom of body)
+script(type="module", defer).
+  import { DotLottie } from 'https://esm.sh/@lottiefiles/dotlottie-web';
+  console.log(!{JSON.stringify(contacts)});
+  document.querySelectorAll('canvas.lottie-canvas').forEach(canvas => {
+    const src  = canvas.dataset.src;
+    const player = new DotLottie({
+      canvas,
+      src,
+      autoplay: false
+    });
+
+    player.addEventListener('load', () => {
+      const wrapper = canvas.closest(".contact-item");
+      wrapper.addEventListener("mouseenter", () => {
+        player.setMode("forward")
+
+        player.play();
+      });
+      wrapper.addEventListener("mouseleave", () => {
+        player.setMode("reverse");
+
+        player.play();
+      });
+    });
+  });
+
+            

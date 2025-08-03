@@ -1,0 +1,92 @@
+each experience, index in experiences
+  div.timeline-item.animate-on-scroll-enter.border-t.py-3(style=`top:calc(18vh + ${index} * 5em); background: #36506b; color: white`)
+    div.flex-1.flex.flex-col.justify-between.timeline-left(style="max-width: 15vw; min-width:6em; min-height: 4em;")
+      span.col-span-2.timeline-date.end-date !{experience.end_date}
+      span.col-span-2.timeline-date.sticky-date !{experience.start_date}
+
+      svg.connector-line(id=`line-${index}` width="2" height="90%")
+        line(x1="0" y1="0" x2="0" y2="0" stroke="rgb(204, 98, 60)" stroke-width="3" stroke-dasharray="4 2")
+    div.flex-1.flex.flex-col
+      h3.font-semibold(class="text-[length:var(--text-heading-2)]")
+        | #{experience.job_title}
+      h3.pb-3(class="text-[length:var(--text-heading-3)]")
+        | #{experience.company}
+      p
+        div.tech-stack(class="text-[length:var(--text-base)]")
+          | Tech stack:&nbsp;
+          each tech, i in experience.tech_stack
+            span.tech-item= tech
+            if i < experience.tech_stack.length - 1
+              span.divider &nbsp;|&nbsp;
+      ul.py-3(class="text-[length:var(--text-heading-4)]" style="list-style-type: '- ';")
+        each line in experience.summary.split('\\n')
+          if line.trim() !== ''
+            li.py-2= line
+
+script. 
+  ;(function(){
+    const timelineDates = Array.from(document.querySelectorAll('.timeline-left'));
+    timelineDates.forEach(datesCol => {
+      datesCol._initH = datesCol.getBoundingClientRect().height;
+    });
+
+    function onScroll() {
+      const vh = window.innerHeight;
+
+      timelineDates.forEach(datesCol => {
+        const start = datesCol.querySelector(".end-date");
+        const label   = datesCol.querySelector('.sticky-date');
+        const line  = datesCol.querySelector('.connector-line').querySelector("line");
+        const { top, bottom, height } = datesCol.getBoundingClientRect();
+        
+        // Set line height depending on date positions
+        const startRect = start.getBoundingClientRect();
+        const labelRect = label.getBoundingClientRect();
+        const y1 = startRect.bottom - top + startRect.height / 2;
+        const y2 = labelRect.top - top + labelRect.height / 2;
+        line.setAttribute("y1", y1);
+        line.setAttribute("y2", y2);
+
+        const diff = window.pageYOffset - (datesCol._prev_scroll ? datesCol._prev_scroll: 0);
+
+        const raw = getComputedStyle(datesCol.parentElement).getPropertyValue('--timeline-gap').trim();
+        const itemStyle = getComputedStyle(datesCol.parentElement);
+        const itemStyleHeight =  parseFloat(itemStyle.height) - 100;
+        const parentStyleTop =  parseFloat(itemStyle.top);
+        const parentTop =  datesCol.parentElement.getBoundingClientRect().top;
+        
+        const colStyle = getComputedStyle(datesCol);
+        const colMinHeight = parseFloat(colStyle.minHeight);
+        const colHeight = parseFloat(colStyle.height);
+
+        if (bottom > vh) {
+          // Stick to bottom of screen if bottom of 
+          datesCol.style.height   = datesCol._initH + 'px';
+          label.style.position = 'sticky';
+        } else if (
+          datesCol._prev_scroll > window.pageYOffset 
+            && datesCol._max_scroll > window.pageYOffset 
+            && colHeight <= itemStyleHeight
+        ) {
+          datesCol.style.height   = (height - diff) + 'px';
+        } else if (parentStyleTop >= parentTop && height > colMinHeight) {
+          datesCol.style.height = (height - diff) + 'px';
+          label.style.position = 'relative';
+          datesCol._max_scroll = window.pageYOffset;
+        }
+
+        datesCol._prev_scroll = window.pageYOffset;
+      });
+    }
+
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(() => {
+          onScroll();
+          ticking = false;
+        });
+      }
+    }, { passive: true });
+  })();

@@ -27,7 +27,7 @@ export const getProject = async (req, res) => {
     }
   }
 
-  let template = pug.compileFile('views/includes/project_container.pug');
+  let template = pug.compileFile('views/page/project_container.pug');
   let html = template({ project: project })
 
   res.send(html);

@@ -15,24 +15,19 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);;
 
-export const getCollection = async (col, res) => {
-  return await getDocs(collection(db, col)).then((snapshot) => snapshot.docs.map(doc => 
-    {
-      let data = doc.data();
-      data['_id'] = doc.id;
+const appendId = (doc) => {
+  let data = doc.data();
+  data['_id'] = doc.id;
 
-      return data;
-    }));
+  return data;
+}
+
+export const getCollection = async (col, res) => {
+  return await getDocs(collection(db, col)).then((snapshot) => snapshot.docs.map(appendId));
 }
 
 export const getDocument = async (col, name, res) => {
-  return await getDoc(doc(db, col, name)).then((docSnap) => 
-    {
-      let data = docSnap.data();
-      data['_id'] = docSnap.id;
-
-      return data;
-    });
+  return await getDoc(doc(db, col, name)).then(appendId);
 }
 
 export default getCollection;

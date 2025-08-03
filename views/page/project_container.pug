@@ -1,18 +1,19 @@
 extends ../index.pug
 
 block content
-  div(class="project-container")
-    div(class="project-details")
-      h2 #{project.title}
-      
+  section.h-auto.project-container(class="mb-[-100svh]" style="color: #2c3e50; background: #e8e8e3; overflow-x: hidden;")
+    div.project-details.section-padding-equal.sticky.top-0.flex.flex-col.justify-end.p-4.width-max.items-center
+      span.flex.flex-col.font-semibold.uppercase.text-3xl.animate-on-scroll-enter
+        h2 #{project.title}
+
       if project.remote
         div.remote-wrapper(style="width: 50vmin; height: 50vmin; position: relative;")
           div.loader#loader(style="width: 100%; height: 100%; position: absolute; z-index: 10; transition: opacity .5s")
-            include car_loading
+            include ../components/loading/car_loading
           div#iframe-invisible(style="width: 100%; height: 100%; overflow: hidden; opacity: 0, z-index: 1; transition: opacity .5s")
             
       if project.markdown
-        div#markdown-content(style="padding: 1em;") !{project.markdown}
+        article.markdown-body(style="padding: 1em;") !{project.markdown}
             
   script.
     var remoteUrl = !{JSON.stringify(project.remote)};

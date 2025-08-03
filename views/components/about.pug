@@ -1,0 +1,53 @@
+section.h-auto(class="mb-[-100svh]" style="color: #2c3e50; background: #e8e8e3; overflow-x: hidden;")
+    div.h-svh.section-padding-equal.sticky.top-0.flex.flex-col.justify-end.p-4.width-max
+      div.relative.flex.w-full.flex-col.h-auto(class="md:gap-y-[var(--space-lg)]")
+        include ../components/item/name_heading
+        div.relative.grid.w-auto.grid-cols-12.justify-between.ml-5.code-text(class='gap-x-[var(--gap-fluid)] gap-y-[var(--space-md)]')
+          div.col-span-12.flex.flex-col.justify-between(class="gap-y-[var(--space-2xl)] pt-[var(--space-sm)] md:col-span-4 md:gap-y-[var(--space-md)]")
+            div.grid-gap.flex.flex-col.h-full(class="gap-[var(--space-md)] md:gap-y-[var(--space-xl)]")
+              div.flex.flex-col.h-full.justify-evenly(class="gap-y-[var(--space-sm)] md:gap-y-[var(--space-md)]")
+                div.w-full.text-balance.font-medium.leading-snug(class="max-w-[32ch]")
+                  div.overflow-hidden.font-semibold.animate-on-scroll-enter
+                    span.break-words Welcome to my projects! 
+                    br                  
+                    br                  
+                    span.break-words I am a 
+                    span.break-words.dotted-underline Senior Full-Stack Developer
+                    span.break-words  from the UK. 
+                    br
+                    br
+                    span.break-words Open to job opportunities worldwide.
+                div.overflow-clip.w-fit.dotted-border.rounded-md.animate-on-scroll-enter
+                  div
+                  button.relative.flex.items-center.px-6.py-3.overflow-hidden.font-medium.transition-all.rounded-md.group(style="background-color:#2c3e50;" onclick="scrollToBottom()")
+                    span.absolute.top-0.right-0.inline-block.w-4.h-4.transition-all.duration-500.ease-in-out.rounded.orange-background(class="group-hover:-mr-4 group-hover:-mt-4")
+                      span.absolute.top-0.right-0.w-5.h-5.rotate-45(class="translate-x-1/2 -translate-y-1/2" style="background-color: #e8e8e3")
+                    span.absolute.bottom-0.rotate-180.left-0.inline-block.w-4.h-4.transition-all.duration-500.ease-in-out.rounded.orange-background(class="group-hover:-ml-4 group-hover:-mb-4")
+                      span.absolute.top-0.right-0.w-5.h-5.rotate-45(class="translate-x-1/2 -translate-y-1/2" style="background-color: #e8e8e3")
+                    span.absolute.bottom-0.left-0.w-full.h-full.transition-all.duration-500.ease-in-out.delay-200.-translate-x-full.rounded-md.orange-background(class="group-hover:translate-x-0")
+                    span.relative.w-full.text-left.text-white.transition-colors.duration-200.ease-in-out(class="group-hover:text-white") CONTACT↗
+          div.col-span-4.flex.flex-col.items-start.md.items-center.animate-on-scroll-enter
+            div.flex.h-fit.w-fit.flex-col.items-center.justify-center.overflow-hidden.rounded-md.p-2.dotted-border.animate-on-scroll-enter(class="gap-y-[var(--space-2xs)]")
+              div.pointer-events-none.max-w-lg.rounded-lg(class="h-[15vh] md:h-[50vh]")
+                img.h-full.w-full.object-cover.object-center.rounded-md(alt='Just an Image.' width='1536' height='2040' decoding='async' data-nimg='1' src='/images/headshot.jpg')
+          div.end-1.col-span-8.flex.w-full.flex-col.items-end.justify-end.animate-on-scroll-enter(class="md:col-span-4" style="color: black")
+            div.overflow-clip
+              span.block.text-right.font-mono.font-medium.uppercase.leading-snug(class="max-w-[15ch] text-[length:var(--text-base-small)] md:max-w-max 3xl:text-[length:var(--text-base)]")
+                div.overflow-hidden.p-2.dotted-underline
+                  span
+                    span.inline-block.pr-2 Available
+                    span.inline-block.pr-2 for
+                    span.inline-block.pr-2 work
+            div.overflow-clip.p-2.dotted-underline.animate-on-scroll-enter
+              span.block.leading-none.font-semibold.uppercase(class="sm:text-[length:var(--text-heading-1--alt)] 3xl:text-[length:var(--text-heading-1)]")
+                div.overflow-hidden
+                  span
+                    span.inline-block.pr-2 Oct 2025
+    div.h-svh
+    script. 
+      function scrollToBottom() {
+        window.scrollTo({
+          top: document.body.scrollHeight,
+          behavior: 'smooth' // adds a nice animation
+        });
+      }
