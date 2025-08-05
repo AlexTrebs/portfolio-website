@@ -16,7 +16,8 @@ body {
 }
 /* Main content container */
 .app-container {
-  margin-left: 60px;
+  margin-left: 60px; 
+  width: 100%;
 }
 /* Project microfrontend styling */
 .project-container {
