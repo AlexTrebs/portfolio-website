@@ -53,7 +53,7 @@ script.
     // Remove bubble after animation completes
     setTimeout(() => {
       bubble.remove();
-    }, duration * 900);
+    }, duration * 3000);
   }
 
   // Create new bubbles periodically
@@ -63,7 +63,7 @@ script.
         createBubble();
     }
     // Continue creating bubbles every 300ms
-    setInterval(createBubble, 300);
+    setInterval(createBubble, 250);
   }
   // Start animation when the page loads
   window.addEventListener("load", startBubbleAnimation);

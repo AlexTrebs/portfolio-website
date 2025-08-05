@@ -34,6 +34,10 @@ app.get("/load/:id", getProject);
 app.get('/', getHome);
 app.get('/contact', getContact);
 
+app.get('/healthcheck', async (_req, res, _next) => {
+  res.status(200).send({'message':'OK'});
+});
+
 // Start the server
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
