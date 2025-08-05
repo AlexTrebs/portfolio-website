@@ -21,7 +21,6 @@ export const getProject = async (req, res) => {
     try {
       const response = await fetch(project.markdown);
       project.markdown = marked.parse(await response.text());
-      console.log(project.markdown);
     } catch (error) {
       console.error("Markdown not found at ${project.markdown}");
     }

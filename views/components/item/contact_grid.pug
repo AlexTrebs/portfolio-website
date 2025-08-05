@@ -8,7 +8,7 @@ for contact in contacts
     //- In your layout.pug (e.g. head or bottom of body)
 script(type="module", defer).
   import { DotLottie } from 'https://esm.sh/@lottiefiles/dotlottie-web';
-  console.log(!{JSON.stringify(contacts)});
+
   document.querySelectorAll('canvas.lottie-canvas').forEach(canvas => {
     const src  = canvas.dataset.src;
     const player = new DotLottie({
