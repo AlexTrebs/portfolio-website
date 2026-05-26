@@ -1,11 +1,45 @@
+/* Override fixed h-svh so the section grows when content is taller than viewport */
+#Contact > div {
+  height: auto;
+  min-height: 100vh;
+  min-height: 100svh;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  place-items: center;
+  gap: clamp(0.5rem, 2vw, 2rem);
+  width: 100%;
+}
+
+.contact-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+}
+
 .icon-wrapper {
   position: relative;
-  width: 10vw;
+  width: clamp(2rem, 8vw, 6rem);
   aspect-ratio: 1 / 1;
   animation-name: fadeInOpacity;
-	animation-iteration-count: 1;
-	animation-timing-function: ease-in;
-	animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 1s;
+}
+
+.contact-item span {
+  font-size: clamp(0.6rem, 1.2vw, 1rem);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 canvas.lottie-canvas {
@@ -14,5 +48,32 @@ canvas.lottie-canvas {
   left: 0;
   width: 100%;
   height: 100%;
-  pointer-events: auto; 
+  pointer-events: auto;
+}
+
+img.contact-svg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: invert(27%) sepia(100%) saturate(250%) hue-rotate(172deg) brightness(80%);
+}
+
+.blog canvas.lottie-canvas,
+.blog img.contact-svg {
+  filter: invert(27%) sepia(100%) saturate(250%) hue-rotate(172deg) brightness(80%);
+}
+
+@media (max-width: 640px) {
+  .contact-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .icon-wrapper {
+    width: clamp(3rem, 18vw, 6rem);
+  }
+
+  .contact-item span {
+    font-size: clamp(0.65rem, 3vw, 0.9rem);
+  }
 }

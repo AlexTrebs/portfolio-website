@@ -2,22 +2,10 @@ div.waves
   each wave, index in ['wave1', 'wave2', 'wave3', 'wave4']
     div.layer(class=`layer${index + 1}`)
       svg(xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4000 70" width="1000%" height="10%" preserveAspectRatio="none")
-        defs
-          pattern(id=`mirrored-wave-${index}` patternUnits="userSpaceOnUse" width="400" height="100")
-            image(
-              href=`/images/${wave}.svg`
-              x="0"
-              y="0"
-              width="200"
-              height=`calc(100 - 10 * ${index})`
-            )
-            image(
-              href=`/images/${wave}.svg`
-              width="200"
-              height=`calc(100 - 10 * ${index})`
-              transform="translate(400,0) scale(-1,1)"
-            )
-        rect(x="0" y="0" width="500%" height="100" fill=`url(#mirrored-wave-${index})`)
+        - var h = 100 - 10 * index
+        - for (var i = 0; i < 10; i++)
+          image(href=`/images/${wave}.svg` x=`${i * 400}` y="0" width="200" height=h preserveAspectRatio="none")
+          image(href=`/images/${wave}.svg` width="200" height=h preserveAspectRatio="none" transform=`translate(${(i + 1) * 400}, 0) scale(-1, 1)`)
 script.
   gsap.registerPlugin(ScrollTrigger);
 

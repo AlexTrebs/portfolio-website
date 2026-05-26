@@ -13,7 +13,7 @@ const formatUnixToDate = (unixTimestamp) => {
 export const getExperienceList = async (_, res) => {
   const rawExperiences = await getAll('experience');
   const experiences = rawExperiences
-    .sort((a, b) => b.start_date - a.start_date)
+    .sort((a, b) => b.start_date.seconds - a.start_date.seconds)
     .map((exp) => ({
       ...exp,
       start_date: formatUnixToDate(exp.start_date),

@@ -36,3 +36,7 @@
   z-index: -5;
   top: 50%;
 }
+
+#about .about-content {
+  gap: clamp(0.5rem, 3vmin, 3rem);
+}

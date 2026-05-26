@@ -4,6 +4,7 @@ body {
   margin: 0;
   background-color: #e8e8e3;
   color: #171717;
+  min-height: 100vh;
   min-height: 100svh;
 }
 * {
@@ -83,6 +84,7 @@ html.lenis {
 }
 
 .width-max {
+  width: calc(100vw - 75px);
   width: calc(100svw - 75px)
 }
 

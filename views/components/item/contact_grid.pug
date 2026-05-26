@@ -1,10 +1,11 @@
 for contact in contacts
-  a.contact-item.place-items-center.text-center.animate-on-scroll-enter(href=`${contact.url}`)
+  a.contact-item.animate-on-scroll-enter(href=(contact.url || '#') class=contact.name.toLowerCase().replace(/\s+/g, '-'))
     div.icon-wrapper
-      canvas.lottie-canvas(
-        data-src=contact.lottie
-      )
-    span.whitespace-nowrap #{contact.name}
+      if contact.lottie
+        canvas.lottie-canvas(data-src=contact.lottie)
+      else if contact.svg
+        img.contact-svg(src=contact.svg alt=contact.name)
+    span #{contact.name}
     //- In your layout.pug (e.g. head or bottom of body)
 script(type="module", defer).
   import { DotLottie } from 'https://esm.sh/@lottiefiles/dotlottie-web';

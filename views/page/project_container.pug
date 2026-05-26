@@ -16,7 +16,7 @@ block content
         article.markdown-body(style="padding: 1em;") !{project.markdown}
             
   script.
-    var remoteUrl = !{JSON.stringify(project.remote)};
+    var remoteUrl = !{JSON.stringify(project.remote || null).replace(/</g, '\\u003c').replace(/>/g, '\\u003e')};
     var container = document.getElementById("iframe-invisible");
     var loader = document.getElementById("loader");
 
@@ -34,9 +34,9 @@ block content
         loader.style.opacity = 0;
         setTimeout(() => {
           loader.style.display = "none";
-        }, "500");
+        }, 500);
       });
 
       container.appendChild(frame);
       return frame;
-    }, "1000");
+    }, 1000);

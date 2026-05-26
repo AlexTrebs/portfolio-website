@@ -16,6 +16,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);;
 
 const appendId = (doc) => {
+  if (!doc.exists()) return null;
   let data = doc.data();
   data['_id'] = doc.id;
 

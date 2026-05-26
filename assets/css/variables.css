@@ -13,5 +13,5 @@
   --space-2xs: clamp(0.5625rem,0.5446rem + 0.0893vi,0.625rem);
   --text-base-small: 1rem;
   --text-base: clamp(0.65rem,0rem + 1vi,1.5rem);
-  --timeline-gap: var(--text-heading-2) * 2 + var(--text-heading-3) * 2;
+  --timeline-gap: calc(var(--text-heading-2) * 2 + var(--text-heading-3) * 2);
 }
