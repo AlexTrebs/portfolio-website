@@ -1,5 +1,5 @@
 each experience, index in experiences
-  div.timeline-item.animate-on-scroll-enter.border-t.py-3(style=`top:calc(18vh + ${index} * 5em); background: #36506b; color: white`)
+  div.timeline-item.animate-on-scroll-enter.py-3(style=`top:calc(18vh + ${index} * 5em); background: rgba(44, 62, 80, 0.82); backdrop-filter: blur(8px); box-shadow: 0 0 60px 30px rgba(44, 62, 80, 0.75); color: white`)
     div.flex-1.flex.flex-col.justify-between.timeline-left(style="max-width: 15vw; min-width:6em; min-height: 4em;")
       span.col-span-2.timeline-date.end-date !{experience.end_date}
       span.col-span-2.timeline-date.sticky-date !{experience.start_date}
@@ -9,16 +9,14 @@ each experience, index in experiences
     div.flex-1.flex.flex-col
       h3.font-semibold(class="text-[length:var(--text-heading-2)]")
         | #{experience.job_title}
-      h3.pb-3(class="text-[length:var(--text-heading-3)]")
+      h3.company-name(class="text-[length:var(--text-heading-3)]")
         | #{experience.company}
       p
         div.tech-stack(class="text-[length:var(--text-base)]")
           | Tech stack:&nbsp;
-          each tech, i in experience.tech_stack
+          each tech in experience.tech_stack
             span.tech-item= tech
-            if i < experience.tech_stack.length - 1
-              span.divider &nbsp;|&nbsp;
-      ul.py-3(class="text-[length:var(--text-heading-4)]" style="list-style-type: '- ';")
+      ul.pb-3(class="text-[length:var(--text-heading-4)]" style="list-style-type: '- ';")
         each line in experience.summary.split('\\n')
           if line.trim() !== ''
             li.py-2= line

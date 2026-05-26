@@ -15,8 +15,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Serve static assets from the "public" folder
-app.use(express.static('assets'));
 app.use(compression());
+app.use(express.static('assets'));
 
 // Endpoint: Return HTML for the sidebar buttons
 app.get("/load/projects-list", getProjectList);
@@ -40,6 +40,10 @@ app.get('/healthcheck', async (_req, res, _next) => {
 
 // Start the server
 const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
-});
+if (!process.env.VERCEL) {
+  app.listen(port, () => {
+    console.log(`Server running on http://localhost:${port}`);
+  });
+}
+
+export default app;

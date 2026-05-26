@@ -9,7 +9,7 @@
   bottom: 0;
   left: 0;
   width: 400%;
-  height: auto;  
+  height: auto;
   display: flex;
   align-items: flex-end;
   pointer-events: none;
@@ -21,10 +21,34 @@
   width: 100%;
 }
 
-.layer1 { z-index: 3; opacity: 1; }
-.layer2 { z-index: 1; opacity: 0.8; transform: translateX(-150px); }
-.layer3 { z-index: 4; opacity: 0.6; transform: translateX(-300px); }
-.layer4 { z-index: 2; opacity: 0.4; transform: translateX(-450px); }
+.layer1 {
+  z-index: 3;
+  opacity: 1;
+}
+
+.layer2 {
+  z-index: 1;
+  opacity: 0.8;
+  transform: translateX(-150px);
+}
+
+.layer3 {
+  z-index: 4;
+  opacity: 0.6;
+  transform: translateX(-300px);
+}
+
+.layer4 {
+  z-index: 2;
+  opacity: 0.4;
+  transform: translateX(-450px);
+}
+
+
+#Experience {
+  border-width: 6px 0 0 0;
+  border-image: linear-gradient(to right, transparent, rgba(255,255,255,0.4), transparent) 1;
+}
 
 .timeline-content {
   gap: 10px;
@@ -43,6 +67,8 @@
   height: min-content;
   position: sticky;
   width: 100%;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
 }
 
 .sticky-wrapper {
@@ -58,7 +84,6 @@
 }
 
 .timeline-date {
-  background: #36506b;
   width: 6em;
   text-align: center;
 }
@@ -69,15 +94,43 @@
   gap: 0.25em;
 }
 
-.tech-item, .divider {
+.tech-item {
   white-space: nowrap;
   color: inherit;
 }
 
+
 .connector-line {
-  position:absolute; 
-  left:3em;
-  top:0; 
-  z-index:-2; 
-  pointer-events:none;
+  position: absolute;
+  left: 3em;
+  top: 0;
+  z-index: -2;
+  pointer-events: none;
+}
+
+.company-name {
+  opacity: 0.75;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+.timeline-item p {
+  margin: 0;
+  padding: 5px;
+}
+
+.timeline-item p::before {
+  content: '';
+  display: block;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(204, 98, 60, 0.5), transparent);
+  margin: 0.6em 0;
+}
+
+.timeline-item ul {
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.timeline-item ul li {
+  line-height: 1.6;
 }
